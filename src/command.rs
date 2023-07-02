@@ -3,7 +3,7 @@ use serde_json::Value;
 
 pub struct Command<Payload> {
     pub id: String,
-    pub type_: String,
+    pub _type: String,
     pub aggregate_id: String,
     pub payload: Payload,
     pub date_time: Option<DateTime<Utc>>,
@@ -15,13 +15,13 @@ pub struct Command<Payload> {
 }
 
 impl Command<Value> {
-    pub fn new(id: String, type_: String, aggregate_id: String, payload: Value) -> Self {
+    pub fn new(id: String, _type: String, aggregate_id: String, payload: Value) -> Self {
         Self {
             id,
-            type_,
+            _type,
             aggregate_id,
             payload,
-            date_time: Some(date_time.to_rfc3339()),
+            date_time: Some(Utc::now()),
             aggregate_type: None,
             status: None,
             additional_information: None,
